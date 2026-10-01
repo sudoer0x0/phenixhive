@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Phone, MapPin, ExternalLink, Shield } from "lucide-react";
+import { Mail, Phone, ExternalLink } from "lucide-react";
 import { COMPANY_DETAILS, SERVICES } from "@/data/content";
 
 export function Footer() {
@@ -13,19 +13,19 @@ export function Footer() {
     <footer className="bg-[#05080F] border-t border-slate-800 text-slate-400 text-xs sm:text-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
-          {/* Col 1: Brand & Bio */}
+          {/* Col 1: Brand & Bio with borderless logo */}
           <div className="lg:col-span-4 space-y-4">
-            <Link href="#" className="flex items-center gap-3">
-              <div className="relative w-9 h-9 rounded-lg overflow-hidden bg-white p-0.5 border border-slate-700">
+            <Link href="#" className="flex items-center gap-3 group">
+              <div className="relative w-9 h-9 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
                 <Image
-                  src="/logo.jpeg"
+                  src="/logo-emblem.png"
                   alt="PhenixHive Logo"
                   fill
-                  className="object-contain"
+                  className="object-contain drop-shadow-[0_0_10px_rgba(239,68,68,0.25)]"
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-bold tracking-wider text-white uppercase">
+                <span className="text-lg font-bold tracking-wider text-white uppercase group-hover:text-red-400 transition-colors">
                   PHENIX<span className="text-red-500">HIVE</span>
                 </span>
                 <span className="text-[10px] uppercase tracking-widest text-slate-400 font-medium -mt-1">

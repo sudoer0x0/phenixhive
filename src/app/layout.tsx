@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: "PhenixHive",
     images: [
       {
-        url: "/logo.jpeg",
+        url: "/logo-emblem.png",
         width: 800,
         height: 800,
         alt: "PhenixHive Cybersecurity",
@@ -55,12 +55,17 @@ export const metadata: Metadata = {
     title: "PhenixHive | Enterprise Cybersecurity & Resilient Defense",
     description:
       "Proactive cybersecurity solutions for modern organizations: penetration testing, cloud hardening, vulnerability scanning, and incident response.",
-    images: ["/logo.jpeg"],
+    images: ["/logo-emblem.png"],
   },
   icons: {
-    icon: "/logo.jpeg",
-    shortcut: "/logo.jpeg",
-    apple: "/logo.jpeg",
+    icon: [
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
 };
 

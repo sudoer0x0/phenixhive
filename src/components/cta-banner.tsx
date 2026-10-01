@@ -1,17 +1,35 @@
 "use client";
 
 import React from "react";
-import { ArrowRight, MessageSquare, PhoneCall, ShieldCheck } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, MessageSquare, ShieldCheck } from "lucide-react";
 import { COMPANY_DETAILS } from "@/data/content";
 
 export function CtaBanner() {
   return (
-    <section className="py-20 bg-gradient-to-b from-[#070B14] via-[#0B1220] to-[#070B14] border-b border-slate-800/80 relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-b from-[#070B14] via-[#0B1220] to-[#070B14] border-b border-slate-800/80 relative overflow-hidden">
       {/* Decorative ambient background accents */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-red-950/20 blur-[130px] rounded-full pointer-events-none" />
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.15, 0.25, 0.15],
+        }}
+        transition={{
+          duration: 9,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-red-950/25 blur-[140px] rounded-full pointer-events-none"
+      />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl border border-slate-700/80 bg-gradient-to-br from-[#0F172A] via-[#0B1220] to-[#080D1A] p-8 sm:p-14 shadow-2xl shadow-black/60 relative overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96, y: 30 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="rounded-2xl border border-slate-700/80 bg-gradient-to-br from-[#0F172A] via-[#0B1220] to-[#080D1A] p-8 sm:p-14 shadow-2xl shadow-black/60 relative overflow-hidden"
+        >
           {/* Subtle top indicator bar */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-600 via-rose-500 to-blue-600" />
 
@@ -31,15 +49,19 @@ export function CtaBanner() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
-              <a
+              <motion.a
+                whileHover={{ scale: 1.03, y: -1 }}
+                whileTap={{ scale: 0.98 }}
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-md text-sm font-semibold tracking-wide text-white bg-red-600 hover:bg-red-500 active:bg-red-700 transition-all shadow-lg shadow-red-950/60 focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-md text-sm font-semibold tracking-wide text-white bg-red-600 hover:bg-red-500 active:bg-red-700 transition-all shadow-lg shadow-red-950/60 hover:shadow-red-900/80 focus:outline-none focus:ring-2 focus:ring-red-500"
               >
                 <span>Request a Security Consultation</span>
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
+                whileHover={{ scale: 1.03, y: -1 }}
+                whileTap={{ scale: 0.98 }}
                 href={COMPANY_DETAILS.whatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -47,7 +69,7 @@ export function CtaBanner() {
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>Chat on WhatsApp</span>
-              </a>
+              </motion.a>
             </div>
 
             <div className="pt-6 border-t border-slate-800/80 flex flex-wrap items-center gap-6 text-xs text-slate-400 font-mono">
@@ -58,10 +80,10 @@ export function CtaBanner() {
               <span>•</span>
               <span>No Obligation Proposal</span>
               <span>•</span>
-              <span>Direct Technical Direct Line: {COMPANY_DETAILS.phone}</span>
+              <span>Direct Line: {COMPANY_DETAILS.phone}</span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

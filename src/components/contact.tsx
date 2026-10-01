@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   Mail,
   Phone,
@@ -88,11 +89,17 @@ export function Contact({ preselectedService }: ContactProps) {
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#070B14] relative border-b border-slate-800/80">
+    <section id="contact" className="py-28 bg-[#070B14] relative border-b border-slate-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Direct Contact & Security Assurance */}
-          <div className="lg:col-span-5 space-y-6">
+          {/* Left Column: Direct Contact & Security Assurance with scroll animation */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 space-y-6"
+          >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-700/80 text-red-400 text-xs font-mono font-medium">
               <span>Initiate Engagement</span>
             </div>
@@ -108,7 +115,8 @@ export function Contact({ preselectedService }: ContactProps) {
 
             {/* Direct Contact Cards */}
             <div className="space-y-3 pt-2">
-              <a
+              <motion.a
+                whileHover={{ x: 5 }}
                 href={COMPANY_DETAILS.whatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -126,9 +134,10 @@ export function Contact({ preselectedService }: ContactProps) {
                   </div>
                   <div className="text-xs text-slate-400">Direct response for immediate inquiries</div>
                 </div>
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
+                whileHover={{ x: 5 }}
                 href={`mailto:${COMPANY_DETAILS.email}`}
                 className="group flex items-center gap-4 p-4 rounded-xl bg-[#0B1220] border border-slate-800 hover:border-blue-600/70 hover:bg-[#0E182D] transition-all"
               >
@@ -144,9 +153,10 @@ export function Contact({ preselectedService }: ContactProps) {
                   </div>
                   <div className="text-xs text-slate-400">Encrypted communications supported</div>
                 </div>
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
+                whileHover={{ x: 5 }}
                 href={`tel:${COMPANY_DETAILS.phoneRaw}`}
                 className="group flex items-center gap-4 p-4 rounded-xl bg-[#0B1220] border border-slate-800 hover:border-red-600/70 hover:bg-[#1A0E17] transition-all"
               >
@@ -162,7 +172,7 @@ export function Contact({ preselectedService }: ContactProps) {
                   </div>
                   <div className="text-xs text-slate-400">Mon - Fri, 8:00 AM - 6:00 PM WAT</div>
                 </div>
-              </a>
+              </motion.a>
             </div>
 
             {/* Confidentiality Notice */}
@@ -172,10 +182,16 @@ export function Contact({ preselectedService }: ContactProps) {
                 <strong className="text-slate-200">Strict Non-Disclosure:</strong> All initial scope discussions and project specifications are held in strict commercial confidence. We routinely execute mutual NDAs prior to technical data exchange.
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column: Interactive Contact Form */}
-          <div className="lg:col-span-7">
+          {/* Right Column: Interactive Contact Form with scroll animation */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7"
+          >
             <div className="rounded-2xl bg-[#0B1220] border border-slate-800 p-6 sm:p-10 shadow-2xl shadow-black/40">
               <div className="pb-6 border-b border-slate-800 mb-6">
                 <h3 className="text-xl font-bold text-white">Project Scoping & Inquiry Form</h3>
@@ -323,7 +339,9 @@ export function Contact({ preselectedService }: ContactProps) {
 
                   {/* Submit Button */}
                   <div className="pt-2">
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
                       type="submit"
                       disabled={status === "loading"}
                       className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-sm font-semibold uppercase tracking-wider text-white bg-red-600 hover:bg-red-500 active:bg-red-700 disabled:opacity-50 transition-all shadow-lg shadow-red-950/60 focus:outline-none focus:ring-2 focus:ring-red-500"
@@ -339,18 +357,18 @@ export function Contact({ preselectedService }: ContactProps) {
                           <Send className="w-4 h-4" />
                         </>
                       )}
-                    </button>
+                    </motion.button>
                   </div>
 
                   <div className="text-center pt-2">
-                    <p className="text-[11px] text-slate-500">
+                    <p className="text-[11px] text-slate-400">
                       We protect your personal data in accordance with strict privacy principles. No marketing spam.
                     </p>
                   </div>
                 </form>
               )}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -2,27 +2,34 @@
 
 import React from "react";
 import Image from "next/image";
-import { ShieldCheck, Eye, Terminal, Users2, ShieldAlert } from "lucide-react";
-import { COMPANY_DETAILS } from "@/data/content";
+import { motion } from "framer-motion";
+import { ShieldCheck, Eye, Terminal } from "lucide-react";
 
 export function About() {
   return (
-    <section id="about" className="py-24 bg-[#070B14] border-b border-slate-800/80 relative">
+    <section id="about" className="py-28 bg-[#070B14] border-b border-slate-800/80 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left Column: Visual Brand Story */}
-          <div className="lg:col-span-5 space-y-6">
+          {/* Left Column: Visual Brand Story with scroll animation */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 space-y-6"
+          >
             <div className="rounded-2xl border border-slate-800 bg-[#0B1220] p-8 shadow-2xl relative overflow-hidden">
               {/* Background ambient red glow */}
               <div className="absolute -top-12 -right-12 w-48 h-48 bg-red-950/30 rounded-full blur-3xl pointer-events-none" />
 
               <div className="flex items-center gap-4 mb-6">
-                <div className="relative w-16 h-16 rounded-xl bg-white p-1 border border-slate-700 overflow-hidden shadow-lg">
+                {/* Clean borderless transparent emblem */}
+                <div className="relative w-16 h-16 flex items-center justify-center shrink-0">
                   <Image
-                    src="/logo.jpeg"
+                    src="/logo-emblem.png"
                     alt="PhenixHive Emblem"
                     fill
-                    className="object-contain"
+                    className="object-contain drop-shadow-[0_0_16px_rgba(239,68,68,0.35)]"
                   />
                 </div>
                 <div>
@@ -55,10 +62,16 @@ export function About() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column: Mission and Principles */}
-          <div className="lg:col-span-7 space-y-6">
+          {/* Right Column: Mission and Principles with scroll animation */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7 space-y-6"
+          >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-700/80 text-red-400 text-xs font-mono font-medium">
               <span>About PhenixHive</span>
             </div>
@@ -72,49 +85,52 @@ export function About() {
             </p>
 
             <div className="space-y-4 pt-2">
-              <div className="flex items-start gap-3.5">
-                <div className="p-2 rounded-lg bg-slate-900 border border-slate-800 mt-1 shrink-0">
-                  <Terminal className="w-4 h-4 text-red-400" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white mb-1">
-                    Hands-On Technical Expertise
-                  </h4>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    We conduct genuine manual testing and deep architectural analysis. Automated tools serve as initial discovery, but our value lies in human-driven threat exploration that models real-world adversary behavior.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5">
-                <div className="p-2 rounded-lg bg-slate-900 border border-slate-800 mt-1 shrink-0">
-                  <ShieldCheck className="w-4 h-4 text-blue-400" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white mb-1">
-                    Zero-Judgment Collaborative Remediation
-                  </h4>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    Discovering vulnerabilities is only half the battle. We treat your engineering and operations teams as trusted partners, working shoulder-to-shoulder to explain root causes and verify code-level remediation.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5">
-                <div className="p-2 rounded-lg bg-slate-900 border border-slate-800 mt-1 shrink-0">
-                  <Eye className="w-4 h-4 text-emerald-400" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white mb-1">
-                    Uncompromising Ethical Standards & Privacy
-                  </h4>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    All engagements operate under stringent non-disclosure agreements (NDAs) and rigorous operational security protocols. Your proprietary data and vulnerability details remain completely confidential.
-                  </p>
-                </div>
-              </div>
+              {[
+                {
+                  icon: Terminal,
+                  color: "text-red-400",
+                  title: "Hands-On Technical Expertise",
+                  desc: "We conduct genuine manual testing and deep architectural analysis. Automated tools serve as initial discovery, but our value lies in human-driven threat exploration that models real-world adversary behavior.",
+                },
+                {
+                  icon: ShieldCheck,
+                  color: "text-blue-400",
+                  title: "Zero-Judgment Collaborative Remediation",
+                  desc: "Discovering vulnerabilities is only half the battle. We treat your engineering and operations teams as trusted partners, working shoulder-to-shoulder to explain root causes and verify code-level remediation.",
+                },
+                {
+                  icon: Eye,
+                  color: "text-emerald-400",
+                  title: "Uncompromising Ethical Standards & Privacy",
+                  desc: "All engagements operate under stringent non-disclosure agreements (NDAs) and rigorous operational security protocols. Your proprietary data and vulnerability details remain completely confidential.",
+                },
+              ].map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    className="flex items-start gap-3.5 group p-2 rounded-lg hover:bg-slate-900/40 transition-colors"
+                  >
+                    <div className="p-2 rounded-lg bg-slate-900 border border-slate-800 mt-1 shrink-0 group-hover:border-slate-700 transition-colors">
+                      <Icon className={`w-4 h-4 ${item.color}`} />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-white mb-1 group-hover:text-red-400 transition-colors">
+                        {item.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
